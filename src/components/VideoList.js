@@ -3,22 +3,23 @@ import ReactPlayer from "react-player";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Home from "./Home";
 import Spinner from "./Spinner";
+import "./VideoList.css";
 
 function VideoList({ query }) {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [list, setList] = useState([]);
   const [nextPageToken, setNextPageToken] = useState(null);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const API_KEY = "AIzaSyDa2NSmiM4LZhGZSgYGfVyexvo3NHx6dPk";
-  const AUTHORIZATION_HEADER = "AIzaSyDa2NSmiM4LZhGZSgYGfVyexvo3NHx6dPk";
+  const API_KEY = "AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs";
+  const AUTHORIZATION_HEADER = "AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs";
 
   useEffect(() => {
     searchYouTube(query);
   }, [query]);
 
   const searchYouTube = async (q) => {
-    setisLoading(true);
+    setIsLoading(true);
     setList([]);
     const encodedQuery = encodeURIComponent(q);
     const response = await fetch(
@@ -34,11 +35,11 @@ function VideoList({ query }) {
     const body = await response.json();
     setList(body.items);
     setNextPageToken(body.nextPageToken);
-    setisLoading(false);
+    setIsLoading(false);
   };
 
   const fetchMoreData = async () => {
-    setisLoading(true);
+    setIsLoading(true);
     const encodedQuery = encodeURIComponent(query);
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&pageToken=${nextPageToken}&type=video&key=${API_KEY}&q=${encodedQuery}`,
@@ -53,10 +54,10 @@ function VideoList({ query }) {
     const body = await response.json();
     setList((prevList) => prevList.concat(body.items));
     setNextPageToken(body.nextPageToken);
-    setisLoading(false);
+    setIsLoading(false);
   };
 
-  const handleClick = (e, videoUrl) => {
+  const handleClick = (e, videoUrl, index) => {
     e.preventDefault();
     setSelectedVideoUrl(videoUrl);
     window.scrollTo(0, 0);
@@ -73,25 +74,19 @@ function VideoList({ query }) {
 
   return (
     <>
-      <div style={{ height: "auto", backgroundColor: "grey" }}>
-      <div  
-        className='player-wrapper'
-        style={{
-          padding: "10px",
-          marginLeft: "10px",
-          position: "relative",
-          width:'100%',
-          height:'100%',
-        }}
-      >
+      <div style={{ backgroundColor: "black", minHeight: "100vh" }}>
         {selectedVideoUrl && (
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${selectedVideoUrl}`}
-            controls={true}
-            plsying={true}
-          />
+          <div className="player-wrapper">
+            <ReactPlayer
+              className="react-player"
+              url={`http://www.youtube.com/watch?v=${selectedVideoUrl}`}
+              controls={true}
+              playing={true}
+              width="100%"
+              height="100%"
+            />
+          </div>
         )}
-      </div>
         <InfiniteScroll
           dataLength={list.length}
           next={fetchMoreData}
@@ -110,54 +105,25 @@ function VideoList({ query }) {
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
+              justifyContent: "center",
             }}
           >
             {list &&
-              list.map((item) => (
-                <div>
-                  <div
-                    onClick={(e) => handleClick(e, item.id.videoId)}
-                    style={{
-                      margin: "10px",
-                      overflow: "hidden",
-                      width: "320px",
-                      height: "320px",
-                      boxShadow:
-                        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-                      borderRadius: "12px",
-                    }}
-                  >
+              list.map((item, index) => (
+                <div
+                  onClick={(e) => handleClick(e, item.id.videoId, index)}
+                  className="video-item"
+                >
+                  <div className="thumbnail-wrapper">
                     <img
-                      style={{
-                        borderRadius: "12px",
-                        alignItems: "center",
-                      }}
+                      className="thumbnail"
                       src={item.snippet.thumbnails.medium.url}
                       alt="thumbnail"
                     />
-                    <div
-                      style={{
-                        padding: "5px",
-                        color: "white",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "18px",
-                          marginBottom: "5px",
-                          fontWeight: "bold",
-                          display: "-webkit-box",
-                          webkitBoxOrient: "vertical",
-                          webkitLineClamp: "3",
-                          overflow: "hidden",
-                        }}
-                      >
-                        {item.snippet.title}
-                      </div>
-                      <div style={{ fontSize: "14px" }}>
-                        {item.snippet.channelTitle}
-                      </div>
-                    </div>
+                  </div>
+                  <div className="info-wrapper">
+                    <div className="title">{item.snippet.title}</div>
+                    <div className="channel">{item.snippet.channelTitle}</div>
                   </div>
                 </div>
               ))}

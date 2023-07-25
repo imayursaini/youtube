@@ -1,25 +1,18 @@
-import React from "react";
+import React from 'react';
+import './Home.css';
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <>
-      <div
-        sx={{ bgcolor: 'grey' }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            color: "lightgrey",
-            fontSize: 54,
-            fontFamily: "Poppins",
-            fontWeight: "700",
-          }}
-        >
-          Welcome To My YouTube
-        </div>
-      </div>
-    </>
+    <div className="wrapper">
+    <div className="typing-demo">
+      Welcome to Youtube
+    </div>
+
+    <div className="search-results">
+        <p>Start Searching On YouTube and Enjoy</p>
+    </div>
+</div>
   );
 };
 
-export default Home;
+export default HomePage;

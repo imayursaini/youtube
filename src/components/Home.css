@@ -1,0 +1,43 @@
+.wrapper {
+    background-color: black;
+    height: 100vh;
+    text-align: -webkit-center;
+  }
+  
+  .typing-demo {
+    color: white;
+    width: 19ch;
+    animation: typing 4s steps(26) 
+    /* infinite alternate  */
+    , blink 1s step-end infinite normal;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }
+
+  .search-results {
+    color: white;
+    opacity: 0;
+    animation: fadeIn 4s forwards; /* Use fadeIn animation to fade-in the results */
+    margin-top: 20px;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
