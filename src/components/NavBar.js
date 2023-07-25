@@ -34,6 +34,7 @@ export default function NavBar({ onSubmit }) {
 
   const handleAutocompleteChange = (event, value) => {
     setSearchTerm(value);
+    onSubmit(value);
   };
 
   const handleChange = async (event) => {
@@ -57,6 +58,7 @@ export default function NavBar({ onSubmit }) {
   
   const handleClose = () => {
     setSuggestions([]); 
+    
   };
 
   return (

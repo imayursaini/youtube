@@ -6,8 +6,10 @@ import VideoList from "./components/VideoList";
 function App() {
   const [query, setQuery] = useState("");
   const handleSubmit = (value) => {
-    console.log(value);
-    setQuery(value)
+    if (value !== null) {
+      console.log(value);
+      setQuery(value);
+    }
   };
 
   return (

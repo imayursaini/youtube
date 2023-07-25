@@ -15,6 +15,7 @@ function VideoList({ query }) {
   const AUTHORIZATION_HEADER = "AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs";
 
   useEffect(() => {
+    setSelectedVideoUrl(null);
     searchYouTube(query);
   }, [query]);
 
