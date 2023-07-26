@@ -17,7 +17,7 @@ export default function NavBar({ onSubmit }) {
     try {
       if (searchTerm.length >= 3) {
         const response = await fetch(
-          `https://www.googleapis.com/customsearch/v1?key=AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs&cx=343c9c653e8e74939&q=${encodeURIComponent(
+          `https://www.googleapis.com/customsearch/v1?key=AIzaSyDqCT7y6GadJZms0_8QgjkhYqR9-rZ2_1s&cx=343c9c653e8e74939&q=${encodeURIComponent(
             searchTerm
           )}`
         );
@@ -68,7 +68,7 @@ export default function NavBar({ onSubmit }) {
           <a href="/">
             <img
               style={{ margin: "10px", width: "39px" }}
-              src="ytlogo.avif"
+              src="./ytlogo.png"
               alt="ytlogo"
             />
           </a>

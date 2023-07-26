@@ -5,21 +5,24 @@ import Home from "./Home";
 import Spinner from "./Spinner";
 import "./VideoList.css";
 
-function VideoList({ query }) {
+function VideoList({ query , progress}) {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [list, setList] = useState([]);
   const [nextPageToken, setNextPageToken] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  
 
-  const API_KEY = "AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs";
-  const AUTHORIZATION_HEADER = "AIzaSyDjHihvqLVnXu1PzZoBq8Di_HVI9gQBgxs";
+  const API_KEY = "AIzaSyDqCT7y6GadJZms0_8QgjkhYqR9-rZ2_1s";
+  const AUTHORIZATION_HEADER = "AIzaSyDqCT7y6GadJZms0_8QgjkhYqR9-rZ2_1s";
 
   useEffect(() => {
     setSelectedVideoUrl(null);
     searchYouTube(query);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const searchYouTube = async (q) => {
+    progress(10);
     setIsLoading(true);
     setList([]);
     const encodedQuery = encodeURIComponent(q);
@@ -34,9 +37,12 @@ function VideoList({ query }) {
       }
     );
     const body = await response.json();
+    progress(40);
     setList(body.items);
+    progress(80);
     setNextPageToken(body.nextPageToken);
     setIsLoading(false);
+    progress(100);
   };
 
   const fetchMoreData = async () => {
