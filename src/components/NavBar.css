@@ -17,3 +17,13 @@
   background-color: grey; 
   border-radius: 3px; 
 }
+
+/* Add yellow color to the input base label when focused */
+.MuiInputLabel-root.Mui-focused {
+  color: white !important;
+}
+
+
+.MuiInputLabel-underline:after: {
+  border-bottom-color:green !important;
+}

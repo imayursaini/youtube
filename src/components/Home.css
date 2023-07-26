@@ -9,7 +9,8 @@
     width: 19ch;
     animation: typing 4s steps(26) 
     /* infinite alternate  */
-    , blink 1s step-end infinite normal;
+    , blink 1s step-end infinite normal,
+    hideBorder 10s forwards;;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid;
@@ -29,10 +30,16 @@
     }
   }
 
+  @keyframes hideBorder {
+    to {
+      border-right-color: transparent;
+    }
+  }
+
   .search-results {
     color: white;
     opacity: 0;
-    animation: fadeIn 4s forwards; /* Use fadeIn animation to fade-in the results */
+    animation: fadeIn 4s forwards;
     margin-top: 20px;
   }
   

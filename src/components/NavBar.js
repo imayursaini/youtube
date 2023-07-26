@@ -68,7 +68,7 @@ export default function NavBar({ onSubmit }) {
           <a href="/">
             <img
               style={{ margin: "10px", width: "39px" }}
-              src="./ytlogo.png"
+              src="src\components\NavBar.js"
               alt="ytlogo"
             />
           </a>
