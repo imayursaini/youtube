@@ -6,12 +6,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Autocomplete } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import "./NavBar.css";
+
 
 
 export default function NavBar({ onSubmit }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+
 
   const fetchSuggestions = async (searchTerm) => {
     try {
@@ -65,10 +66,10 @@ export default function NavBar({ onSubmit }) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "black" }}>
         <Toolbar>
-          <a href="/">
+          <a href="src\App.js">
             <img
               style={{ margin: "10px", width: "39px" }}
-              src="src\components\NavBar.js"
+              src={'/assets/ytlogo.png'}
               alt="ytlogo"
             />
           </a>
@@ -105,6 +106,9 @@ export default function NavBar({ onSubmit }) {
           </form> */}
 
 
+          
+
+
 
           <form onSubmit={handleSubmit}>
             <Autocomplete
@@ -115,7 +119,7 @@ export default function NavBar({ onSubmit }) {
                   borderRadius: "12px",
                   backgroundColor: "grey",
                   "&:hover": {
-                    backgroundColor: "grey", // Set the same background color as the default
+                    backgroundColor: "grey", 
                   },
                 },
               }}

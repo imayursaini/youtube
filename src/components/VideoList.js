@@ -3,7 +3,6 @@ import ReactPlayer from "react-player";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Home from "./Home";
 import Spinner from "./Spinner";
-import "./VideoList.css";
 
 function VideoList({ query , progress}) {
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
@@ -12,8 +11,8 @@ function VideoList({ query , progress}) {
   const [isLoading, setIsLoading] = useState(false);
   
 
-  const API_KEY = "AIzaSyDqCT7y6GadJZms0_8QgjkhYqR9-rZ2_1s";
-  const AUTHORIZATION_HEADER = "AIzaSyDqCT7y6GadJZms0_8QgjkhYqR9-rZ2_1s";
+  const API_KEY = "AIzaSyCvgf8XAamuyxLC59Ef4Dy7uuCZBN9I6OM";
+  const AUTHORIZATION_HEADER = "AIzaSyCvgf8XAamuyxLC59Ef4Dy7uuCZBN9I6OM";
 
   useEffect(() => {
     setSelectedVideoUrl(null);
