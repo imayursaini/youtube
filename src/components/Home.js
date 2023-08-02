@@ -44,7 +44,7 @@ const HomePage = () => {
 
   return (
     <div className="wrapper">
-      <div className="typing-demo">Welcome to Youtube</div>
+      <div className="typing-demo"></div>
 
       {showSearchResults && (
         <div className="search-results">
